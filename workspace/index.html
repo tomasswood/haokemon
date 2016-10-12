@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>HomeAway Holiday Bash</title>
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoXZ0sL-wIuutEI6-9NQDKyzmIpzGmD6A&amp;libraries=places"></script>
+        <script type="text/javascript" src="js/lib/tile.stamen.js?v1.3.0"></script>
+        <script type="text/javascript" src="js/lib/richmarker.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/battle.js"></script>
+        <script src="js/map.js"></script>
+        
+        <link rel="stylesheet" href="css/lib/normalize.css" />
+        <link rel="stylesheet" href="css/lib/foundation.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/app.css" />
+        
+        <link rel="shortcut icon" href="img/home_away_birdhouse.png" type="image/x-icon" />
+    </head>
+    <body>
+        
+        <div id="arena" class="hide">
+            
+            <div class="arena-column">
+                <div id="player-health" class="bar health">
+                    <div id="player-health-remaining" class="perfect bar-fill health-remaining" style="width:100%;"></div>
+                </div>
+                <div id="player-card" class="deck-tooltip box-overlay">
+                    <div class="deck-container"></div>
+                </div>
+            </div>
+            
+            <div class="vs">
+                <h1>VS</h1>
+            </div>
+            
+            <div class="arena-column">
+                <div id="cpu-health" class="bar health">
+                    <div id="cpu-health-remaining" class="perfect bar-fill health-remaining" style="width:100%;"></div>
+                </div>
+                <div id="cpu-card" class="deck-tooltip box-overlay">
+                    <div class="deck-container"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="overlay"></div>
+        
+        <div id="start-game" class="box-overlay intro">
+            <div class="title">
+                <h2>Welcome to</h2>
+                <img width="200" src="img/home_away.png" alt="HomeAway Logo"></img>
+                <h1>Holiday Bash</h1>
+                <h3>Vacation Rental Battle Card Game.</h3>
+                <div class="begin"><a id="start" class="button large" href="#">New Game</a></div>
+                <div id="load-game" class="hide">
+                    <p class="or">or</p>
+	                <a id="load" class="button large" href="#">Continue</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="map-container">
+	        <div id="pac-input-container" class="box-overlay intro hide">
+	            <h3>Where does your adventure begin?</h3>
+	            <input id="pac-input" class="controls" type="text" value="Nelson Bay, NSW, Australia" placeholder="Search Box">
+	            <div id="find-container">
+	                <p class="or">or</p>
+	                <a id="find" class="button large" href="#"><i class="fa fa-map-marker"></i> Find my Location</a>
+	                <a id="continue" class="button large hide" href="#">Continue</a>
+	            </div>
+	        </div>
+	        <input id="search-input" class="controls hide" type="text" placeholder="Search Box">
+            <div id="map_div"></div>
+        </div>
+        
+        <div id="main-card" class="deck-tooltip box-overlay hide">
+            <div id="toggle-deck-tooltip" class="close"><i class="fa fa-times fa-2x"></i></div>
+            <div class="deck-container"></div>
+            <div class="tooltip-buttons">
+                <!--<div id="remove-card" class="delete"><a href="#" class="button">Remove</a></div>-->
+            </div>
+        </div>
+        
+        <div class="deck expanded hide">
+            <div id="toggle-deck" class="close"><i class="fa fa-times fa-2x"></i></div>
+            <ul class="card-list"></ul>
+        </div>
+        
+        <div class="days-left box-overlay hide">
+            <div class="score-container">
+                <div class="small-title">Score:</div>
+                <div class="box-value">
+                    $<span id="score">0</span>
+                </div>
+            </div>
+            <div class="days-left-container">
+                <div class="small-title">Days Left:</div>
+                <div class="box-value">
+                    <span id="days">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="first-property box-overlay hide">
+            <p>You're holiday begins at the lovely <b class="property-title"></b></p>
+            <p>You have 7 days left to battle and win other properties to extend your holiday. You can attempt one battle per day of your holiday.</p>
+            <p>Take a look at your first property card on the left. The number inside the circle represents how tough your property is.
+            The amenities listed on the lower half of the card contribute to your property's speed and attack power.</p>
+            <p>At the bottom of the window is your holiday scrapbook which already contains your first property card. Properties that you win in battle are also displayed here.</p>
+            <p>To begin a battle, choose one of your properties from the scrapbook, and then choose a card from the map to see the details of your opponent.
+                To do battle with the selected card, press the battle button at the bottom of the card.
+                To choose a different card, select the X at the top right of the card.</p>
+            <p>To start battling, close your new card by pressing X button on it right now.</p>
+            <p>Good Luck!</p>
+            
+           <div id="first-property-card" class="deck-tooltip box-overlay hide">
+                <div id="toggle-first-property" class="close"><i class="fa fa-times fa-2x"></i></div>
+                <div class="deck-container"></div>
+                <div class="tooltip-buttons">
+                    <!--<div id="remove-card" class="delete"><a href="#" class="button">Remove</a></div>-->
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <ul class="footerlinks">
+                <li><a href="#" class="button">Share</a></li>
+                <li><a href="#" class="link">Terms of Use</a></li>
+                <li><a href="#" class="link">Privacy Policy</a></li>
+                <li class="copyright"><span class="link">&copy; YesBookit 2015</span></li>
+            </ul>
+        </div>
+
+        <script type="text/javascript">
+        
+            $(document).ready(function() {
+                
+                // dont show the find my location controls if not supported        
+                if ( !navigator.geolocation ) {
+                    $('#find-container').hide();
+                }
+                
+                // allow the player to load their previous game
+                if( 
+                    Boolean( localStorage.getItem("ybi.holiday_bash.cards") )
+                    && Boolean( localStorage.getItem("ybi.holiday_bash.location") )
+                )
+                {
+                    $('#load-game').show();
+                }
+                
+                initMap();
+                
+            });
+            
+        </script>
+    </body>
+</html>

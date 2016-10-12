@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>HomeAway Holiday Bash</title>
+        <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoXZ0sL-wIuutEI6-9NQDKyzmIpzGmD6A&amp;libraries=places"></script>
+        <script type="text/javascript" src="../js/lib/tile.stamen.js?v1.3.0"></script>
+        <script type="text/javascript" src="../js/lib/richmarker.js"></script>
+        <script src="../js/app.js"></script>
+        <script src="../js/map.js"></script>
+        
+        <link rel="stylesheet" href="../css/lib/normalize.css" />
+        <link rel="stylesheet" href="../css/lib/foundation.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/app.css" />
+        
+        <link rel="shortcut icon" href="../img/home_away_birdhouse.png" type="image/x-icon" />
+    </head>
+    <body>
+        <div class="overlay"></div>
+        
+        <div id="start-game" class="box-overlay intro">
+            <div class="title">
+                <h2>Welcome to</h2>
+                <img width="200" src="../img/home_away.png" alt="HomeAway Logo"></img>
+                <h1>Holiday Bash</h1>
+                <p>This is some front page paragraph text</p>
+                <div class="begin"><a id="start" class="button large" href="#">Begin</a></div>
+            </div>
+        </div>
+        
+        <div class="map-container">
+	        <div id="pac-input-container" class="box-overlay intro hide">
+	            <h3>Where does your adventure begin?</h3>
+	            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+	            <div id="find-container">
+	                <p>or</p>
+	                <a id="find" class="button large" href="#"><i class="fa fa-map-marker"></i> Find my Location</a>
+	                <a id="continue" class="button large hide" href="#">Continue</a>
+	            </div>
+	        </div>
+	        <input id="search-input" class="controls hide" type="text" placeholder="Search Box">
+            <div id="map_div"></div>
+        </div>
+        
+        <div class="deck-tooltip box-overlay hide">
+            <div id="toggle-deck-tooltip" class="close"><i class="fa fa-times fa-2x"></i></div>
+            <div class="deck-container"></div>
+            <div class="tooltip-buttons">
+                <div id="battle-card" class="battle"><a href="#" class="button">Battle</a></div>
+                <!--<div id="remove-card" class="delete"><a href="#" class="button">Remove</a></div>-->
+            </div>
+        </div>
+        
+        <div class="deck expanded hide">
+            <div id="toggle-deck" class="close"><i class="fa fa-times fa-2x"></i></div>
+            <ul class="card-list"></ul>
+        </div>
+        
+        <div class="footer">
+            <ul class="footerlinks">
+                <li><a href="#" class="button">Share</a></li>
+                <li><a href="#" class="link">Terms of Use</a></li>
+                <li><a href="#" class="link">Privacy Policy</a></li>
+                <li class="copyright"><span class="link">&copy; YesBookit 2015</span></li>
+            </ul>
+        </div>
+
+        <script type="text/javascript">
+        
+            $(document).ready(function() {
+                
+                initMap();
+                
+            });
+            
+        </script>
+    </body>
+</html>

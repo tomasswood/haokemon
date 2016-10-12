@@ -1,0 +1,527 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed|Lato:400,300,700|Oleo+Script);
+@import 'scss/variables';
+@import 'scss/generics';
+
+.intro {
+    @extend .center;
+    
+   .title {
+        text-align: center;
+        
+        h1 {
+            font-size: 5rem;
+            margin-bottom: -20px;
+        }
+        
+        h2 {
+            font-size: 3rem;
+        }
+        
+        .begin {
+            margin-top: 2em;
+        }
+    } 
+}
+
+.map-container {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: calc(100% - 50px);
+
+    #map_div {
+        height: 100%;
+        width: 100%;
+    }
+    
+	.controls {
+		border: 1px solid transparent;
+		border-radius: 2px 0 0 2px;
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		height: 40px;
+		outline: none;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+	}
+	
+	#pac-input-container {
+	    text-align: center;
+	}
+
+	#pac-input,
+	#search-input {
+	    margin: 20px 20px 0;
+	  	background-color: #fff;
+	  	font-family: Roboto;
+	  	font-size: 15px;
+	  	font-weight: 300;
+	  	padding: 0 11px 0 13px;
+	  	text-overflow: ellipsis;
+	  	width: 300px;
+	}
+
+	#pac-input:focus,
+	#search-input:focus {
+	  	border-color: $HomeAwayBlue;
+	}
+
+	.pac-container {
+	  	font-family: Roboto;
+	}
+
+	#type-selector {
+	  	color: #fff;
+	  	background-color: #4d90fe;
+	  	padding: 5px 11px 0px 11px;
+	}
+
+	#type-selector label {
+	  	font-family: Roboto;
+	  	font-size: 13px;
+	  	font-weight: 300;
+	}
+	#target {
+		width: 345px;
+	}
+}
+
+.deck-tooltip {
+    z-index: 10;
+    position: absolute;
+    left: 50%;
+    margin-left: -175px;
+    top: 50px;
+    padding: 20px;
+    width: 350px;
+    border: 5px solid $HomeAwayBlue;
+    
+    .close {
+        position: absolute;
+        right: -30px;
+        width: 30px;
+        height: 30px;
+        top: -30px;
+        text-align: center;
+        cursor: pointer;
+        color: $DarkGray;
+        opacity: 0.5;
+        
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .battle {
+        left: 0;
+        
+        a {
+            background-color: $green;
+            border-bottom-color: $greendarker;
+            
+            &:hover {
+                background-color: $greendark;
+                border-bottom-color: $greendarker;
+            }
+        }
+    }
+    
+    .start-battle {
+        left: 0;
+        
+        a {
+            background-color: $orange;
+            border-bottom-color: $orangedarker;
+            
+            &:hover {
+                background-color: $orangedark;
+                border-bottom-color: $orangedarker;
+            }
+        }
+    }
+ 
+    .delete {
+        right: 0;
+        
+        a {
+            background-color: $red;
+            border-bottom-color: $reddarker;
+            
+            &:hover {
+                background-color: $reddark;
+                border-bottom-color: $reddarker;
+            }
+        }
+    }
+    
+    .tooltip-buttons {
+        
+        div {
+            position: absolute;
+            bottom: -50px;
+            width: 120px;
+        
+            &:only-child {
+                left: 50%;
+                margin-left: -60px;
+                right: initial;
+            }
+            
+            a {
+                font-size: 14px;
+            }
+        }
+    }
+    
+    .property-image {
+        @extend .cover;
+        width: 100%;
+        height: 200px;
+        border: 2px solid $HomeAwayBlue;
+        overflow: hidden;
+        position: relative;
+        
+        &:hover .overlay {
+            opacity: 1;
+        }
+        
+        .overlay {
+            background: rgba( 0 ,0, 0, 0.5 );
+            text-align: center;
+            padding: 10px;
+            line-height: 180px;
+            opacity: 0;
+            transition: opacity .25s ease;
+            
+            .overlay-message {
+                @extend .h2;
+                color: $white;
+                display: inline-block;
+                line-height: normal;
+                vertical-align: middle;
+                font-size: 28px;
+            }
+        }
+    }
+    
+    .property-details {
+        
+        .power-container {
+            margin-top: 10px;
+        }
+        
+        h4, .power {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        h4 {
+            @extend .h1;
+            width: calc( 100% - 70px );
+            text-align: left;
+            margin-top: 10px;
+            font-size: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .power {
+            @extend .script;
+            width: 70px;
+            height: 70px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 24px;
+            padding-top: 15px;
+            color: $LightestGray;
+            border: 2px solid $LightestGray;
+            border-radius: 50%;
+            
+            &.perfect {
+                color: $HomeAwayBlue;
+                border-color: $HomeAwayBlue;
+            }
+            
+            &.good {
+                color: $green;
+                border-color: $green;
+            }
+            
+            &.neutral {
+                color: $yellow;
+                border-color: $yellow;
+            }
+            
+            &.bad {
+                color: $red;
+                border-color: $red;
+            }
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            
+            li {
+                @extend .p;
+                padding: 5px;
+            }
+        }
+    }
+}
+
+.deck {
+    position: fixed;
+    height: 150px;
+    left: 0;
+    bottom: 50px;
+    z-index: 999;
+    width: 100%;
+    background-color: $white;
+    -webkit-transition: all 500ms ease-in-out;
+    -moz-transition: all 500ms ease-in-out;
+    -ms-transition: all 500ms ease-in-out;
+    -o-transition: all 500ms ease-in-out;
+    transition: all 500ms ease-in-out;
+    
+    .close {
+        right: 25px;
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        top: -50px;
+        cursor: pointer;
+        color: $DarkGray;
+        opacity: 0.5;
+        
+        &:hover {
+            opacity: 1;
+        }
+    }
+    
+    > ul {
+        white-space: nowrap;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        overflow: auto;
+        
+        > li {
+            display: inline-block;
+            margin: 10px 0 10px 10px;
+            position: relative;
+            
+            .deck-property {
+                @extend .cover;
+                width: 150px;
+                height: 100px;
+                cursor: pointer;
+                position: relative;
+                
+                &::after {
+                    position: absolute;
+                    background: $LightestGray;
+                    width: 100%;
+                    height: 95%;
+                    top: 12px;
+                    left: 4%;
+                    -webkit-transform: skewY(1deg);
+                    -moz-transform: skewY(1deg);
+                    transform: skewY(1deg);
+                    outline: 1px solid transparent;
+                    z-index: -1;
+                    content: "";
+                    -webkit-transition: all 200ms ease-in-out;
+                    -moz-transition: all 200ms ease-in-out;
+                    -ms-transition: all 200ms ease-in-out;
+                    -o-transition: all 200ms ease-in-out;
+                    transition: all 200ms ease-in-out;
+                }
+                
+                &:hover {
+                    
+                    &::after {
+                        top: 15px;
+                        left: 5%;
+                    }
+                }
+                
+                &.active {
+                    
+                    &::after {
+                        background-color: $green;
+                    }
+                }
+            }
+        }
+    }
+}
+
+p.or {
+    margin: 1rem auto;
+}
+
+#arena {
+    @extend .cover;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: calc(100% - 50px);
+    z-index: 1001;
+    
+    .vs {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 50%;
+        left: 50%;
+        margin-top: -25px;
+        margin-left: -25px;
+        text-align: center;
+        
+        h1 {
+            color: $HomeAwayBlue;
+        }
+    }
+    
+    .arena-column {
+        padding: 2% 10%;
+        position: relative;
+        width: 50%;
+        display: inline-block;
+        float: left;
+        
+        &:first-child .deck-tooltip.attack {
+            @extend .slide-left;
+        }
+        
+        &:last-child .deck-tooltip.attack {
+            @extend .slide-right;
+        }
+    
+        .deck-tooltip {
+            top: initial;
+            
+            &.hit {
+                @extend .shake-slow;
+            }
+        }
+    }
+    
+    .bar.health {
+        border: 2px solid $HomeAwayBlue;
+        height: 25px;
+        margin-bottom: 25px;
+    }
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 10000;
+    background-color: $white;
+    height: 50px;
+    
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        
+        &.footerlinks li {
+            float: left;
+            padding: 0;
+            margin: 10px;
+            
+            &.copyright {
+                float: right;
+            }
+            
+            .link {
+                font-size: 11px;
+                color: $LightGray;
+            }
+                
+            a.link:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.days-left {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    padding: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    
+    .score-container, .days-left-container {
+        @extend .p;
+        float: left;
+        position: relative;
+        width: 100px;
+        height: 50px;
+        padding: 10px;
+        font-size: 24px;
+        display: table;
+        color: $white;
+        text-align: center;
+        
+        &::after {
+            position: absolute;
+            background: $LightestGray;
+            width: 100%;
+            height: 95%;
+            top: 12px;
+            left: 4%;
+            -webkit-transform: skewY(1deg);
+            -moz-transform: skewY(1deg);
+            transform: skewY(1deg);
+            outline: 1px solid transparent;
+            z-index: -1;
+            content: "";
+        }
+        
+        .small-title {
+            @extend .p;
+            text-align: left;
+            font-size: 12px;
+        }
+        
+        .box-value {
+            margin: 0 10px;
+        }
+    }
+    
+    .score-container {
+        background-color: $purple;
+        border-bottom: 2px solid $purpledarker;
+    }
+    
+    .days-left-container {
+        background-color: $brown;
+        border-bottom: 2px solid $browndarker;
+        margin-left: 20px;
+    }
+}
+
+.first-property {
+    z-index: 10;
+    position: absolute;
+    padding-right: 200px;
+    left: 20%;
+    top: 50px;
+    width: 800px;
+    border: 5px solid $HomeAwayBlue
+}
+
+#first-property-card {
+        margin-left: 250px;
+}

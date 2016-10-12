@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>HomeAway Holiday Bash</title>
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="../js/battle.js"></script>
+        
+        <link rel="shortcut icon" href="../img/home_away_birdhouse.png" type="image/x-icon" />
+    </head>
+    <body>
+        <a href="#" id="attack">Random Battle</a>
+    </body>
+    <script type="text/javascript">
+    
+        $(document).ready(function() {
+
+        var data = {};
+        var total_files     = 3;
+        var loaded_files    = 0;
+        
+        $.getJSON("../json/properties.json", function( json )
+        {
+            data[ 'properties' ] = json;
+            file_loaded( 'properties' );
+        });
+        
+        $.getJSON("../json/price_index.json", function( json )
+        {
+            data[ 'price_index' ] = json;
+            file_loaded( 'price_index' );
+        });
+        
+        $.getJSON("../json/location_index.json", function( json )
+        {
+            data[ 'location_index' ] = json;
+            file_loaded( 'location_index' );
+        });
+        
+        $( '#attack' ).click( function(e){ random_battle() });
+        
+        function file_loaded ( file )
+        {
+            loaded_files++;
+            if( loaded_files == total_files )
+            {
+                random_battle();
+            }
+        }
+        
+        function random_battle()
+        {
+            var base_properties = data.price_index[ '0-100' ];
+            var deck_size       = base_properties.length;
+
+            var player_card_index   = getRandomIntInclusive(0, deck_size);
+            var npc_card_index      = getRandomIntInclusive(0, deck_size);
+            var player_card         = data.properties[ base_properties[ player_card_index ] ];
+            var npc_card            = data.properties[ base_properties[ npc_card_index ] ];
+            
+            player_card.player = true;
+            
+            var battle_result = battle_cards( player_card, npc_card );
+            console.info( battle_result );
+        }
+        
+        });
+        
+    </script>
+</html>

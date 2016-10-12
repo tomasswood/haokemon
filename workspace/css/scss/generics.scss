@@ -1,0 +1,337 @@
+button, .button {
+    color: $white;
+    display: inline-block;
+    padding: 5px 20px;
+    font-family: 'Lato', sans-serif;
+    font-weight: lighter;
+    font-size: 14px;
+    background-color: $LightBlueDarker;
+    border-bottom: 3px solid $HomeAwayBlueDark;
+    border-radius: 3px;
+    margin-bottom: 0;
+    
+    &:active, &:focus {
+        background-color: $LightBlueDarker;
+    }
+    
+    &:hover {
+        background-color: $HomeAwayBlue;
+    }
+    
+    &.large {
+        padding: 7.5px 30px;
+        font-size: 20px;
+    }
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(0,0,0) translate(-50%, -50%);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba( 255, 255, 255, 0.25 );
+}
+
+.box-overlay {
+    padding: 50px 75px;
+    z-index: 10;
+    background-color: $white;
+    border-radius: 5px;
+    border-bottom: 5px solid $LightestGray;
+}
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000;
+	cursor: pointer;
+	-webkit-box-shadow: 5px 5px 1px 0 rgba(0,0,0,0.25);
+    box-shadow: 5px 5px 1px 0 rgba(0,0,0,0.25);
+	
+	/* flip the pane when hovered */
+    &.flip .flipper {
+    	transform: rotateY(180deg);
+    }
+    
+    &, .back, .front {
+    	width: 50px;
+    	height: 69px;
+        border-radius: 5px;
+    }
+	
+	/* flip speed goes here */
+    .flipper {
+    	transition: 0.6s;
+    	transform-style: preserve-3d;
+    	position: relative;
+    }
+    
+    /* hide back of pane during swap */
+    .front, .back {
+    	backface-visibility: hidden;
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+        background-color: $white;
+        border: 1px solid $HomeAwayBlue;
+    	
+    	img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            margin-left: -20px;
+            margin-top: -20px;
+    	}
+    }
+    
+    /* front pane, placed above back */
+    .front {
+    	z-index: 2;
+    	/* for firefox 31 */
+    	transform: rotateY(0deg);
+    }
+    
+    /* back, initially hidden pane */
+    .back {
+    	transform: rotateY(180deg);
+    }
+}
+
+h1, .h1 {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    text-transform: uppercase;
+    color: $DarkGray;
+}
+
+h2, .h2,
+h3, .h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: lighter;
+    color: $LightGray;
+}
+
+p, .p {
+    font-family: 'Lato', sans-serif;
+    font-weight: lighter;
+}
+
+.script {
+    font-family: 'Oleo Script', cursive;
+    color: $DarkGray;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.show-ib {
+    display: inline-block;
+}
+
+.show-inline {
+    display: inline;
+}
+
+.cover {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: static; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bar {
+    width: 100%;
+    height: 10px;
+    overflow: hidden;
+    background-color: $LightestGray;
+    
+    .bar-fill {
+        height: 100%;
+        
+        &.perfect {
+            background-color: $LightBlue;
+        }
+        
+        &.good {
+            background-color: $green;
+        }
+        
+        &.neutral {
+            background-color: $yellow;
+        }
+        
+        &.bad {
+            background-color: $red;
+        }
+    }
+}
+
+@keyframes thumb {
+	0% { transform: scale(1); }
+	50% { transform: scale(0.9); }
+	100% { transform: scale(1); }
+}
+
+.beat
+{
+	animation-name: thumb;
+	animation-duration: 300ms;
+	transform-origin: 50% 50%;
+	animation-iteration-count: 2;
+	animation-timing-function: linear;
+}
+
+@keyframes slide-l {
+	0% { transform: translateX(0); }
+	50% { transform: translateX(25px); }
+	100% { transform: translateX(0); }
+}
+
+.slide-left
+{
+	animation-name: slide-l;
+	animation-duration: 300ms;
+	transform-origin: 50% 50%;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+}
+
+@keyframes slide-r {
+	0% { transform: translateX(0); }
+	50% { transform: translateX(-25px); }
+	100% { transform: translateX(0); }
+}
+
+.slide-right
+{
+	animation-name: slide-r;
+	animation-duration: 300ms;
+	transform-origin: 50% 50%;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+}
+
+@keyframes shake-slow {
+  2% {
+    transform: translate(7px, 5px) rotate(-1.5deg); }
+  4% {
+    transform: translate(-7px, 1px) rotate(-0.5deg); }
+  6% {
+    transform: translate(-7px, -5px) rotate(2.5deg); }
+  8% {
+    transform: translate(4px, -2px) rotate(1.5deg); }
+  10% {
+    transform: translate(4px, 0px) rotate(3.5deg); }
+  12% {
+    transform: translate(10px, -8px) rotate(-1.5deg); }
+  14% {
+    transform: translate(-5px, -6px) rotate(3.5deg); }
+  16% {
+    transform: translate(5px, -7px) rotate(-0.5deg); }
+  18% {
+    transform: translate(1px, 3px) rotate(-1.5deg); }
+  20% {
+    transform: translate(-4px, 3px) rotate(-2.5deg); }
+  22% {
+    transform: translate(-4px, -3px) rotate(0.5deg); }
+  24% {
+    transform: translate(2px, 3px) rotate(3.5deg); }
+  26% {
+    transform: translate(-7px, -4px) rotate(-0.5deg); }
+  28% {
+    transform: translate(-7px, 7px) rotate(3.5deg); }
+  30% {
+    transform: translate(2px, 9px) rotate(0.5deg); }
+  32% {
+    transform: translate(10px, -8px) rotate(1.5deg); }
+  34% {
+    transform: translate(-2px, -8px) rotate(3.5deg); }
+  36% {
+    transform: translate(-6px, -2px) rotate(-0.5deg); }
+  38% {
+    transform: translate(2px, 6px) rotate(3.5deg); }
+  40% {
+    transform: translate(-2px, -9px) rotate(1.5deg); }
+  42% {
+    transform: translate(5px, -3px) rotate(-1.5deg); }
+  44% {
+    transform: translate(7px, 7px) rotate(-0.5deg); }
+  46% {
+    transform: translate(5px, -6px) rotate(2.5deg); }
+  48% {
+    transform: translate(7px, -2px) rotate(-0.5deg); }
+  50% {
+    transform: translate(2px, 2px) rotate(2.5deg); }
+  52% {
+    transform: translate(-1px, -2px) rotate(1.5deg); }
+  54% {
+    transform: translate(-4px, -6px) rotate(-1.5deg); }
+  56% {
+    transform: translate(7px, -3px) rotate(-1.5deg); }
+  58% {
+    transform: translate(-5px, 2px) rotate(-0.5deg); }
+  60% {
+    transform: translate(3px, 2px) rotate(-1.5deg); }
+  62% {
+    transform: translate(6px, 1px) rotate(-2.5deg); }
+  64% {
+    transform: translate(-4px, 9px) rotate(3.5deg); }
+  66% {
+    transform: translate(8px, -6px) rotate(-2.5deg); }
+  68% {
+    transform: translate(-2px, -4px) rotate(2.5deg); }
+  70% {
+    transform: translate(-5px, -3px) rotate(-0.5deg); }
+  72% {
+    transform: translate(-3px, 6px) rotate(-0.5deg); }
+  74% {
+    transform: translate(-9px, 9px) rotate(1.5deg); }
+  76% {
+    transform: translate(-5px, 9px) rotate(0.5deg); }
+  78% {
+    transform: translate(10px, -1px) rotate(1.5deg); }
+  80% {
+    transform: translate(-9px, 4px) rotate(1.5deg); }
+  82% {
+    transform: translate(-8px, 5px) rotate(-1.5deg); }
+  84% {
+    transform: translate(6px, -2px) rotate(0.5deg); }
+  86% {
+    transform: translate(0px, 5px) rotate(-2.5deg); }
+  88% {
+    transform: translate(7px, -8px) rotate(0.5deg); }
+  90% {
+    transform: translate(-7px, 9px) rotate(-0.5deg); }
+  92% {
+    transform: translate(5px, 0px) rotate(-2.5deg); }
+  94% {
+    transform: translate(-7px, 7px) rotate(3.5deg); }
+  96% {
+    transform: translate(-9px, -5px) rotate(-0.5deg); }
+  98% {
+    transform: translate(-8px, -6px) rotate(3.5deg); }
+  0%, 100% {
+    transform: translate(0, 0) rotate(0); } }
+    
+.shake-slow {
+  animation-duration: 300ms;
+  animation-iteration-count: 1;
+  animation-name: shake-slow;
+  animation-timing-function: linear;
+}
